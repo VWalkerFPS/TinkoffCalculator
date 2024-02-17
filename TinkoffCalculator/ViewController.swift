@@ -39,7 +39,20 @@ enum CalculationHistoryItem {
 }
 
 class ViewController: UIViewController {
-
+    
+    var lastResult = "NoData"
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        resetLabelText()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         guard let buttonText = sender.currentTitle else { return }
         
@@ -47,12 +60,7 @@ class ViewController: UIViewController {
             return
         }
         
-//        if label.text == "0" && buttonText == "," {
-//            label.text?.append(buttonText)
-//            return
-//        }
-        
-        if (label.text == ERROR_LABLE_TEXT || label.text == "0") && buttonText == "," {
+        if (label.text == "0" || label.text == ERROR_LABLE_TEXT ) && buttonText == "," {
             label.text = "0,"
             return
         }
@@ -99,11 +107,24 @@ class ViewController: UIViewController {
             let result = try calculate()
             
             label.text = numberFormatter.string(from: NSNumber(value: result))
+            lastResult = label.text!
         } catch {
             label.text = ERROR_LABLE_TEXT
         }
         
         calculationHistory.removeAll()
+    }
+    
+    
+    
+    @IBAction func showCalculationsList(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let calculationListVC = sb.instantiateViewController(withIdentifier: "CalculationsListViewController")
+        if let vc = calculationListVC as? CalculationListViewController {
+            vc.result = lastResult
+        }
+        
+        navigationController?.pushViewController(calculationListVC, animated: true)
     }
     
     @IBOutlet weak var label: UILabel!
@@ -117,13 +138,6 @@ class ViewController: UIViewController {
         numberFormatter.numberStyle = .decimal
         return numberFormatter
     }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        resetLabelText()
-        
-    }
     
     func calculate() throws -> Double {
         guard case .number(let firstNumber) = calculationHistory[0] else { return 0 }
