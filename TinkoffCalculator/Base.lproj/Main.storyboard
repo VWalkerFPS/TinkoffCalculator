@@ -311,6 +311,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Калькулятор" id="mOG-4h-uis"/>
                     <connections>
+                        <outlet property="historyButton" destination="RMJ-x6-Lss" id="BVO-p1-GwR"/>
                         <outlet property="label" destination="pe7-rc-ACI" id="XWO-6i-zdZ"/>
                     </connections>
                 </viewController>
@@ -326,47 +327,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NoData" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL6-jH-qNJ">
-                                <rect key="frame" x="167.5" y="440.5" width="79" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IFe-vy-ua2" userLabel="BackButton">
-                                <rect key="frame" x="177" y="610.5" width="60" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Закрыть"/>
-                                <connections>
-                                    <action selector="dismissVC:" destination="3vM-6q-E3A" eventType="touchUpInside" id="5hV-hc-sXx"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Результат:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUy-W6-Ej4">
-                                <rect key="frame" x="160.5" y="397.5" width="93" height="23"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mUN-ni-x8G">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pvJ-Lq-w0o"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstItem="IUy-W6-Ej4" firstAttribute="centerX" secondItem="pvJ-Lq-w0o" secondAttribute="centerX" id="HAy-If-eJ4"/>
-                            <constraint firstItem="yL6-jH-qNJ" firstAttribute="top" secondItem="IFe-vy-ua2" secondAttribute="bottom" constant="-200" id="HuQ-st-WTI"/>
-                            <constraint firstItem="yL6-jH-qNJ" firstAttribute="top" secondItem="IUy-W6-Ej4" secondAttribute="bottom" constant="20" id="R6L-p0-jWe"/>
-                            <constraint firstItem="yL6-jH-qNJ" firstAttribute="centerX" secondItem="pvJ-Lq-w0o" secondAttribute="centerX" id="ecM-nJ-V4z"/>
-                            <constraint firstItem="yL6-jH-qNJ" firstAttribute="centerY" secondItem="pvJ-Lq-w0o" secondAttribute="centerY" id="nKs-DO-HJy"/>
-                            <constraint firstItem="IFe-vy-ua2" firstAttribute="centerX" secondItem="pvJ-Lq-w0o" secondAttribute="centerX" id="pvX-iM-CX0"/>
+                            <constraint firstItem="mUN-ni-x8G" firstAttribute="trailing" secondItem="pvJ-Lq-w0o" secondAttribute="trailing" id="5EU-5t-DkW"/>
+                            <constraint firstItem="pvJ-Lq-w0o" firstAttribute="bottom" secondItem="mUN-ni-x8G" secondAttribute="bottom" id="QoN-6w-E0u"/>
+                            <constraint firstItem="mUN-ni-x8G" firstAttribute="top" secondItem="eAn-Ns-szB" secondAttribute="top" id="RyA-Z8-EOY"/>
+                            <constraint firstItem="mUN-ni-x8G" firstAttribute="leading" secondItem="pvJ-Lq-w0o" secondAttribute="leading" id="cV7-eb-28y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Прошлые вычисления" id="SBj-vv-epm"/>
                     <connections>
-                        <outlet property="calculationLabel" destination="yL6-jH-qNJ" id="UqV-MF-7e7"/>
+                        <outlet property="tableView" destination="mUN-ni-x8G" id="DbD-qD-j2S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qUm-kt-Yeu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1683" y="-3"/>
+            <point key="canvasLocation" x="1682.608695652174" y="-3.3482142857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tXe-3T-aJQ">
@@ -389,6 +371,9 @@
     </scenes>
     <resources>
         <image name="clock" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

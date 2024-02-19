@@ -17,6 +17,8 @@
 		BE10590F2B6A9BDA004D4A16 /* TinkoffCalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE10590E2B6A9BDA004D4A16 /* TinkoffCalculatorUITests.swift */; };
 		BE1059112B6A9BDA004D4A16 /* TinkoffCalculatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1059102B6A9BDA004D4A16 /* TinkoffCalculatorUITestsLaunchTests.swift */; };
 		BE87C43B2B7BFC9E00DCBE60 /* CalculationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE87C43A2B7BFC9E00DCBE60 /* CalculationListViewController.swift */; };
+		BE925ECF2B83B78200EC25D3 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE925ECE2B83B78200EC25D3 /* HistoryTableViewCell.swift */; };
+		BE925ED12B83BB6F00EC25D3 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE925ED02B83BB6F00EC25D3 /* HistoryTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		BE1059102B6A9BDA004D4A16 /* TinkoffCalculatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffCalculatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BE1B83942B6C1B9B002B3E61 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		BE87C43A2B7BFC9E00DCBE60 /* CalculationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationListViewController.swift; sourceTree = "<group>"; };
+		BE925ECE2B83B78200EC25D3 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		BE925ED02B83BB6F00EC25D3 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +106,10 @@
 		BE1058EC2B6A9BD9004D4A16 /* TinkoffCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				BE925ECD2B83B71200EC25D3 /* History */,
 				BE1058ED2B6A9BD9004D4A16 /* AppDelegate.swift */,
 				BE1058EF2B6A9BD9004D4A16 /* SceneDelegate.swift */,
 				BE1058F12B6A9BD9004D4A16 /* ViewController.swift */,
-				BE87C43A2B7BFC9E00DCBE60 /* CalculationListViewController.swift */,
 				BE1058F32B6A9BD9004D4A16 /* Main.storyboard */,
 				BE1058F62B6A9BDA004D4A16 /* Assets.xcassets */,
 				BE1058F82B6A9BDA004D4A16 /* LaunchScreen.storyboard */,
@@ -129,6 +133,16 @@
 				BE1059102B6A9BDA004D4A16 /* TinkoffCalculatorUITestsLaunchTests.swift */,
 			);
 			path = TinkoffCalculatorUITests;
+			sourceTree = "<group>";
+		};
+		BE925ECD2B83B71200EC25D3 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				BE87C43A2B7BFC9E00DCBE60 /* CalculationListViewController.swift */,
+				BE925ECE2B83B78200EC25D3 /* HistoryTableViewCell.swift */,
+				BE925ED02B83BB6F00EC25D3 /* HistoryTableViewCell.xib */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +251,7 @@
 			files = (
 				BE1058FA2B6A9BDA004D4A16 /* LaunchScreen.storyboard in Resources */,
 				BE1058F72B6A9BDA004D4A16 /* Assets.xcassets in Resources */,
+				BE925ED12B83BB6F00EC25D3 /* HistoryTableViewCell.xib in Resources */,
 				BE1058F52B6A9BD9004D4A16 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +281,7 @@
 				BE1058F22B6A9BD9004D4A16 /* ViewController.swift in Sources */,
 				BE1058EE2B6A9BD9004D4A16 /* AppDelegate.swift in Sources */,
 				BE1058F02B6A9BD9004D4A16 /* SceneDelegate.swift in Sources */,
+				BE925ECF2B83B78200EC25D3 /* HistoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
