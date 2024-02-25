@@ -9,9 +9,11 @@ import UIKit
 
 class CalculationListViewController: UIViewController {
     
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+    var calculations: [Calculation] = []
 //    @IBOutlet weak var calculationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
+    var currentCellIndexPath: Int = 0
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -73,21 +75,29 @@ extension CalculationListViewController: UITableViewDelegate {
 }
 
 extension CalculationListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return calculations.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 
+        return 1
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return calculations.count
+    }
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
-        let historyItem = calculations[indexPath.row]
+        let historyItem = calculations[indexPath.section]
+//        print(indexPath.section)
         cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var currentDate = Date()
+        guard !calculations.isEmpty else { return nil }
+        let currentDate = calculations[section].date
         let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "HH:mm:ss"
         dateFormatter.dateFormat = "dd.MM.yyyy"
         return dateFormatter.string(from: currentDate)
+//        return "test"
     }
 }

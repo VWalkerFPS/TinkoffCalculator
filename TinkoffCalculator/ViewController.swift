@@ -41,14 +41,17 @@ enum CalculationHistoryItem {
 class ViewController: UIViewController {
     
     var calculationHistory: [CalculationHistoryItem] = []
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
-    var lastResult = "NoData"
+    var calculations: [Calculation] = []
+    let calculationHistoryStorage = CalculationHistoryStorage()
+//    var lastResult = "NoData"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         resetLabelText()
         historyButton.accessibilityIdentifier = "historyButton"
+        
+        calculations = calculationHistoryStorage.loadHistory()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,8 +113,10 @@ class ViewController: UIViewController {
             let result = try calculate()
             
             label.text = numberFormatter.string(from: NSNumber(value: result))
-            calculations.append((calculationHistory, result))
-            lastResult = label.text ?? "NoData"
+            let newCalculation = Calculation(expression: calculationHistory, result: result, date: Date())
+            calculations.append(newCalculation)
+            calculationHistoryStorage.setHistory(calculation: calculations)
+//            lastResult = label.text ?? "NoData"
         } catch {
             label.text = ERROR_LABLE_TEXT
         }
